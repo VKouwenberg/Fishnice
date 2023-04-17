@@ -20,11 +20,22 @@ namespace Fishnice.Controllers
         }
 
         // GET: Fish
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-              return _context.Fish != null ? 
-                          View(await _context.Fish.ToListAsync()) :
-                          Problem("Entity set 'FishniceContext.Fish'  is null.");
+            if (_context.Fish == null)
+            {
+                return Problem("Entity set 'FishniceContext.Fish'  is null.");
+            }
+
+            var movies = from m in _context.Fish
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Title!.Contains(searchString));
+            }
+
+            return View(await movies.ToListAsync());
         }
 
         // GET: Fish/Details/5
