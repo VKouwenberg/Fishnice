@@ -11,6 +11,7 @@ public class Fish
     [Display(Name = "Catch Date")]
     [DataType(DataType.Date)]
     public DateTime CatchDate { get; set; }
+    [Display(Name = "Type")]
     public string? Genre { get; set; }
     public decimal Price { get; set; }
 }

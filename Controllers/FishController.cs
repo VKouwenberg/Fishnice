@@ -19,6 +19,12 @@ namespace Fishnice.Controllers
             _context = context;
         }
 
+        [HttpPost]
+        public string Index(string searchString, bool notUsed)
+        {
+            return "From [HttpPost]Index: filter on " + searchString;
+        }
+
         // GET: Fish
         public async Task<IActionResult> Index(string searchString)
         {
@@ -27,15 +33,15 @@ namespace Fishnice.Controllers
                 return Problem("Entity set 'FishniceContext.Fish'  is null.");
             }
 
-            var movies = from m in _context.Fish
-                         select m;
+            var fishes = from f in _context.Fish
+                         select f;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                movies = movies.Where(s => s.Title!.Contains(searchString));
+                fishes = fishes.Where(s => s.Title!.Contains(searchString));
             }
 
-            return View(await movies.ToListAsync());
+            return View(await fishes.ToListAsync());
         }
 
         // GET: Fish/Details/5
@@ -47,7 +53,7 @@ namespace Fishnice.Controllers
             }
 
             var fish = await _context.Fish
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(f => f.Id == id);
             if (fish == null)
             {
                 return NotFound();
@@ -138,7 +144,7 @@ namespace Fishnice.Controllers
             }
 
             var fish = await _context.Fish
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(f => f.Id == id);
             if (fish == null)
             {
                 return NotFound();

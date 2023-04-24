@@ -1,0 +1,130 @@
+﻿@*@model Ao2a_OP4Eindopdraccht_JansenBhodi.ViewModels.CityDetailsModel
+@{
+    ViewBag.Title = "Full Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Full city info</h2>
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Cities.FirstOrDefault().CityName)</th>
+        <th>@Html.DisplayNameFor(model => model.Cities.FirstOrDefault().CityHolder)</th>
+        <th>@Html.DisplayNameFor(model => model.Cities.FirstOrDefault().CityAge)</th>
+        <th>@Html.DisplayNameFor(model => model.Cities.FirstOrDefault().CityLocation)</th>
+        <th>@Html.DisplayNameFor(model => model.Cities.FirstOrDefault().CityPopulationAmount)</th>
+        <th>@Html.DisplayNameFor(model => model.Cities.FirstOrDefault().CitySize)</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.Cities)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.CityName)</td>
+            <td>@Html.DisplayFor(modelItem => item.CityHolder)</td>
+            <td>@Html.DisplayFor(modelItem => item.CityAge)</td>
+            <td>@Html.DisplayFor(modelItem => item.CityLocation)</td>
+            <td>@Html.DisplayFor(modelItem => item.CityPopulationAmount)</td>
+            <td>@Html.DisplayFor(modelItem => item.CitySize)</td>
+            <td>
+                @Html.ActionLink("Edit City", "Edit", new { id = item.CityId }) |
+                @Html.ActionLink("Delete City", "Delete", new { id = item.CityId })
+            </td>
+        </tr>
+    }
+</table>
+@if (Model.CityEvents != null)
+{
+    <h2>City Events</h2>
+    <table class="table">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.CityEvents.FirstOrDefault().EventName)</th>
+            <th>@Html.DisplayNameFor(model => model.CityEvents.FirstOrDefault().EventCreator)</th>
+            <th>@Html.DisplayNameFor(model => model.CityEvents.FirstOrDefault().EventDate)</th>
+            <th>@Html.DisplayNameFor(model => model.CityEvents.FirstOrDefault().EventDesc)</th>
+            <th>@Html.DisplayNameFor(model => model.CityEvents.FirstOrDefault().EventTarget)</th>
+            <th>@Html.DisplayNameFor(model => model.CityEvents.FirstOrDefault().EventConclusion)</th>
+        </tr>
+        @foreach (var item in Model.CityEvents)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.EventName)</td>
+                <td>@Html.DisplayFor(modelItem => item.EventCreator)</td>
+                <td>@Html.DisplayFor(modelItem => item.EventDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.EventDesc)</td>
+                <td>@Html.DisplayFor(modelItem => item.EventTarget)</td>
+                <td>@Html.DisplayFor(modelItem => item.EventConclusion)</td>
+                <td>
+                    @Html.ActionLink("Edit Event", "EditEvent", "CityEvents", new { id = item.EventId, cityId = item.CityId }, null) |
+                    @Html.ActionLink("Delete Event", "DeleteEvent", "CityEvents", new { id = item.EventId })
+                </td>
+            </tr>
+        }
+    </table>
+}
+<p>@Html.ActionLink("Create New Event", "CreateEvent", "CityEvents")</p>
+@if (Model.Populaces.Count() != 0)
+{
+    <h2>City Populace Spread</h2>
+    <table class="table">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Populaces.FirstOrDefault().Human)</th>
+            <th>@Html.DisplayNameFor(model => model.Populaces.FirstOrDefault().Elf)</th>
+            <th>@Html.DisplayNameFor(model => model.Populaces.FirstOrDefault().Tiefling)</th>
+            <th>@Html.DisplayNameFor(model => model.Populaces.FirstOrDefault().HalfElf)</th>
+            <th>@Html.DisplayNameFor(model => model.Populaces.FirstOrDefault().Halfling)</th>
+            <th>@Html.DisplayNameFor(model => model.Populaces.FirstOrDefault().Gnome)</th>
+            <th>@Html.DisplayNameFor(model => model.Populaces.FirstOrDefault().Dwarf)</th>
+            <th>@Html.DisplayNameFor(model => model.Populaces.FirstOrDefault().Ascalan)</th>
+        </tr>
+        @foreach (var item in Model.Populaces)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Human)</td>
+                <td>@Html.DisplayFor(modelItem => item.Elf)</td>
+                <td>@Html.DisplayFor(modelItem => item.Tiefling)</td>
+                <td>@Html.DisplayFor(modelItem => item.HalfElf)</td>
+                <td>@Html.DisplayFor(modelItem => item.Halfling)</td>
+                <td>@Html.DisplayFor(modelItem => item.Gnome)</td>
+                <td>@Html.DisplayFor(modelItem => item.Dwarf)</td>
+                <td>@Html.DisplayFor(modelItem => item.Ascalan)</td>
+                <td>
+                    @Html.ActionLink("Edit Populace", "EditPopulace", "Populaces", new { id = item.PopulaceId, cityId = item.CityId }) |
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    @Html.ActionLink("Create Populace", "CreatePopulace", "Populaces")
+}
+<br />
+@if (Model.Religions.Count() != 0)
+{
+    <h2>City Religous Beliefs</h2>
+    <table class="table">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Religions.FirstOrDefault().ReligionZerus)</th>
+            <th>@Html.DisplayNameFor(model => model.Religions.FirstOrDefault().ReligionNauma)</th>
+            <th>@Html.DisplayNameFor(model => model.Religions.FirstOrDefault().ReligionYoungGod)</th>
+            <th>@Html.DisplayNameFor(model => model.Religions.FirstOrDefault().ReligionUnknown)</th>
+            <th>@Html.DisplayNameFor(model => model.Religions.FirstOrDefault().ReligionDarkGods)</th>
+        </tr>
+        @foreach (var item in Model.Religions)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.ReligionZerus)</td>
+                <td>@Html.DisplayFor(modelItem => item.ReligionNauma)</td>
+                <td>@Html.DisplayFor(modelItem => item.ReligionYoungGod)</td>
+                <td>@Html.DisplayFor(modelItem => item.ReligionUnknown)</td>
+                <td>@Html.DisplayFor(modelItem => item.ReligionDarkGods)</td>
+                <td>
+                    @Html.ActionLink("Edit Religions", "EditReligion", "Religions", new { id = item.ReligionId, cityId = item.CityId }) |
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    @Html.ActionLink("Create Religions", "CreateReligion", "Religions")
+}
+*@
