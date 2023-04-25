@@ -8,6 +8,7 @@ public class Fish
 {
     public int Id { get; set; }
     public string? Title { get; set; }
+
     [Display(Name = "Catch Date")]
     [DataType(DataType.Date)]
     public DateTime CatchDate { get; set; }

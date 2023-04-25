@@ -26,12 +26,17 @@ namespace Fishnice.Controllers
         }
 
         // GET: Fish
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string fishGenre, string searchString)
         {
             if (_context.Fish == null)
             {
                 return Problem("Entity set 'FishniceContext.Fish'  is null.");
             }
+
+            // Use LINQ to get list of genres.
+            IQueryable<string> genreQuery = from f in _context.Fish
+                                            orderby f.Genre
+                                            select f.Genre;
 
             var fishes = from f in _context.Fish
                          select f;
@@ -41,7 +46,18 @@ namespace Fishnice.Controllers
                 fishes = fishes.Where(s => s.Title!.Contains(searchString));
             }
 
-            return View(await fishes.ToListAsync());
+            if (!string.IsNullOrEmpty(fishGenre))
+            {
+                fishes = fishes.Where(x => x.Genre == fishGenre);
+            }
+
+            var fishGenreVM = new FishGenreViewModel
+            {
+                Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
+                Fishes = await fishes.ToListAsync()
+            };
+
+            return View(fishGenreVM);
         }
 
         // GET: Fish/Details/5

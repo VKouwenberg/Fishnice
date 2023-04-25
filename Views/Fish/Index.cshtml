@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Fishnice.Models.Fish>
+﻿@model Fishnice.Models.FishGenreViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -12,7 +12,11 @@
 
 <form asp-controller="Fish" asp-action="Index" method="get">
     <p>
-        Title: <input type="text" name="SearchString" />
+        <select asp-for="FishGenre" asp-items="Model.Genres">
+            <option value="">All</option>
+        </select>
+
+        Title: <input type="text" asp-for="SearchString" />
         <input type="submit" value="Filter" />
     </p>
 </form>
@@ -21,41 +25,42 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.Fishes![0].Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CatchDate)
+                @Html.DisplayNameFor(model => model.Fishes![0].CatchDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Genre)
+                @Html.DisplayNameFor(model => model.Fishes![0].Genre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                @Html.DisplayNameFor(model => model.Fishes![0].Price)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CatchDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Fishes!) 
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CatchDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
