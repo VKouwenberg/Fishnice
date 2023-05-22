@@ -14,6 +14,6 @@ namespace Fishnice.Data
         {
         }
 
-        public DbSet<Fishnice.Models.Fish> Fish { get; set; } = default!;
+        public DbSet<Fish> Fish { get; set; } = default!;
     }
 }
