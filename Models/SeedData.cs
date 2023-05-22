@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Fishnice.Data;
+//using DAL_DataAccessLayer.DTO.Models;
 using System;
 using System.Linq;
 using Fishnice.Models;
+using Fishnice.Data;
 
-namespace MvcMovie.Models;
+namespace Fishnice.Models;
 
 public static class SeedData
 {
