@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
+using DAL_DataAccessLayer.DTO.Models;
 
 namespace Fishnice.Models
 {

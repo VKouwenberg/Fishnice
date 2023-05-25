@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Fishnice.Migrations
 {
-    [DbContext(typeof(FishniceContext))]
+    [DbContext(typeof(FishniceDbContext))]
     [Migration("20230414192720_InitialCreate")]
     partial class InitialCreate
     {

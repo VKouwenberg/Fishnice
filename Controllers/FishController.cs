@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 //using DAL_DataAccessLayer.DTO.Models;
 using Fishnice.Data;
 using Fishnice.Models;
+using DAL_DataAccessLayer.DTO.Models;
 
 namespace Fishnice.Controllers
 {
@@ -52,7 +53,7 @@ namespace Fishnice.Controllers
                 fishes = fishes.Where(x => x.Genre == fishGenre);
             }
 
-            var fishGenreVM = new FishGenreViewModel
+            var fishGenreVM = new Models.FishGenreViewModel
             {
                 Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
                 Fishes = await fishes.ToListAsync()

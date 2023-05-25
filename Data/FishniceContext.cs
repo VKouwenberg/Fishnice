@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Fishnice.Models;
+//using System.Data.Entity;
 
 namespace Fishnice.Data
 {

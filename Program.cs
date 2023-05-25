@@ -1,16 +1,21 @@
 using Microsoft.EntityFrameworkCore;
 //using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-//using DAL_DataAccessLayer.DTO.Models;
+using DAL_DataAccessLayer.DTO.Models;
+using DAL_DataAccessLayer.DTO.Models.SeedDb;
 using Fishnice.Models;
 using Fishnice.Data;
+
+using System.Data.Entity;
 //using System.Configuration;
 //using MySql.Data.EntityFrameworkCore.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<FishniceContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("FishniceContext")));
+builder.Services.AddDbContext<FishniceContext>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+/*builder.Services.AddDbContext<FishniceContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("FishniceContext")));*/
 
 /*builder.Services.AddDbContext<FishniceContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("FishniceContext") ?? throw new InvalidOperationException("Connection string 'FishniceContext' not found.")));

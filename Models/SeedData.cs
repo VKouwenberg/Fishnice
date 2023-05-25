@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using Fishnice.Models;
 using Fishnice.Data;
+using DAL_DataAccessLayer.DTO.Models;
 
 namespace Fishnice.Models;
 
