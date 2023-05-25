@@ -12,14 +12,14 @@ using System.Data.Entity;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<FishniceContext>();
+//builder.Services.AddDbContext<FishniceContext>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-/*builder.Services.AddDbContext<FishniceContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("FishniceContext")));*/
+builder.Services.AddDbContext<FishniceContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("FishniceContext")));
 
-/*builder.Services.AddDbContext<FishniceContext>(options =>
+builder.Services.AddDbContext<FishniceContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("FishniceContext") ?? throw new InvalidOperationException("Connection string 'FishniceContext' not found.")));
-*/
+
 /*var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<FishniceContext>(options =>
     options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'FishniceContext' not found.")));
